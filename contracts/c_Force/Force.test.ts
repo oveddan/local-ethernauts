@@ -1,8 +1,10 @@
 import { expect } from "chai";
-import { ethers, waffle } from "hardhat";
+import { BaseContract } from "ethers";
+import { ethers } from "hardhat";
+import { AttackingForce } from "../../typechain-types";
 
-let victim: any;
-let attacker: any;
+let victim: BaseContract;
+let attacker: AttackingForce;
 
 describe("Attacking Force", function () {
   beforeEach(async () => {
@@ -15,8 +17,8 @@ describe("Attacking Force", function () {
   // Get this to pass!
   it("Succesfully give the force contract some ETH", async () => {
     await attacker.hackContract();
-    const provider = waffle.provider;
-    const balance = await provider.getBalance(victim.address);
+    const balance = victim.provider.getBalance(victim.address);
+    // const balance = await provider.getBalance(victim.address);
     expect(balance).to.be.above(0);
   });
 });

@@ -1,8 +1,9 @@
 import { expect } from "chai";
-import { ethers, waffle } from "hardhat";
+import { ethers } from "hardhat";
+import { Vault } from "../../typechain-types";
 import helper from "./VaultHelper";
 
-let victim: any;
+let victim: Vault;
 
 describe("Attacking Vault", function () {
   beforeEach(async () => {

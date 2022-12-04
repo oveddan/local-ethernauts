@@ -1,11 +1,13 @@
+import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { expect } from "chai";
 import { ethers } from "hardhat";
+import { AttackingKing, King } from "../../typechain-types";
 
-let victim: any;
-let attacker: any;
-let hacker: any;
-let deployer: any;
-let kingPlayer: any;
+let victim: King;
+let attacker: AttackingKing;
+let hacker: SignerWithAddress;
+let deployer: SignerWithAddress;
+let kingPlayer: SignerWithAddress;
 
 describe("Attacking King", function () {
   beforeEach(async () => {
