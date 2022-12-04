@@ -1,13 +1,14 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
 import helper from "./CoinFlipHelper";
+import { CoinFlip, CoinFlip__factory} from '../../typechain-types'
 
-let victim: any;
+let victim: CoinFlip 
 let attacker: any;
 
 describe.only("Attacking CoinFlip", function () {
   beforeEach(async () => {
-    const Victim = await ethers.getContractFactory("CoinFlip");
+    const Victim = (await ethers.getContractFactory("CoinFlip")) as CoinFlip__factory;
     victim = await Victim.deploy();
     const Attacker = await ethers.getContractFactory("AttackingCoinFlip");
     attacker = await Attacker.deploy(victim.address);
