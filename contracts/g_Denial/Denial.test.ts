@@ -1,10 +1,12 @@
+import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { assert, expect } from "chai";
 import { ethers } from "hardhat";
+import { AttackingDenial, Denial } from "../../typechain-types";
 
-let victim: any;
-let attacker: any;
-let deployer: any;
-let hacker;
+let victim: Denial;
+let attacker: AttackingDenial;
+let deployer: SignerWithAddress;
+let hacker: SignerWithAddress;
 
 describe("Attacking Denial", function () {
   beforeEach(async () => {

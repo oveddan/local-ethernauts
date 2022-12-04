@@ -1,7 +1,8 @@
 import { expect } from "chai";
-import { ethers, waffle } from "hardhat";
+import { ethers } from "hardhat";
+import { Vault } from "../../typechain-types";
 
-const helper = async (victim: any) => {
+const helper = async (victim: Vault) => {
   /* 
     Add code here that will help you pass the test
     Note: Unlock without using the string "A very strong password"
