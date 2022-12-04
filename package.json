@@ -29,5 +29,10 @@
     "@typechain/hardhat": "^5.0.0",
     "hardhat": "^2.9.1",
     "typechain": "^7.0.1"
+  },
+  "scripts": {
+    "chain": "npx hardhat node",
+    "compile": "npx hardhat compile",
+    "test": "npx hardhat test contracts/**/*.test.ts"
   }
 }

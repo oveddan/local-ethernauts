@@ -5,7 +5,7 @@ import helper from "./CoinFlipHelper"
 let victim: any;
 let attacker: any;
 
-describe("Attacking CoinFlip", function () {
+describe.only("Attacking CoinFlip", function () {
   beforeEach(async () => {
     const Victim = await ethers.getContractFactory("CoinFlip");
     victim = await Victim.deploy();
