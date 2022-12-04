@@ -29,6 +29,8 @@
   "scripts": {
     "compile": "npx hardhat compile",
     "chain": "npx hardhat node",
-    "test": "npx hardhat test contracts/**/*.test.ts"
+    "test": "npx hardhat test contracts/**/*.test.ts",
+    "prettier": "npx prettier \"contracts/**/*.{ts,json}\" --check",
+    "prettier:fix": "npm run prettier -- --write"
   }
 }
