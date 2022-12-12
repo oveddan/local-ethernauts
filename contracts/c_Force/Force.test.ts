@@ -16,9 +16,13 @@ describe("Attacking Force", function () {
 
   // Get this to pass!
   it("Succesfully give the force contract some ETH", async () => {
+    const beforeAttackerBalance = await attacker.provider.getBalance(attacker.address)
+    expect(beforeAttackerBalance.toNumber()).to.eq(100);
+
+    console.log('hacking contract')
+
     await attacker.hackContract();
-    const balance = victim.provider.getBalance(victim.address);
-    // const balance = await provider.getBalance(victim.address);
-    expect(balance).to.be.above(0);
+    const balance = await victim.provider.getBalance(victim.address);
+    expect(balance.toNumber()).to.be.above(0);
   });
 });
