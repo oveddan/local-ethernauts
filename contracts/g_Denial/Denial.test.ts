@@ -24,9 +24,10 @@ describe("Attacking Denial", function () {
   it("Succesfully stop the owner from withdrawing", async () => {
     const provider = ethers.provider;
     let error;
+    let beforeBalance = await provider.getBalance(victim.address);
     try {
       await provider.getBalance(deployer.address);
-      await victim.withdraw();
+      await victim.withdraw({gasLimit: 1000000});
     } catch (err) {
       error = err.message;
     } finally {
@@ -34,6 +35,8 @@ describe("Attacking Denial", function () {
         assert.fail("Deployer got their funds!");
       }
       expect(error).to.include("Transaction ran out of gas");
+    
+      expect(beforeBalance).to.eql(await provider.getBalance(victim.address))
     }
   });
 });

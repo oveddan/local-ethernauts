@@ -9,7 +9,7 @@ let hacker: SignerWithAddress;
 let deployer: SignerWithAddress;
 let kingPlayer: SignerWithAddress;
 
-describe.only("Attacking King", function () {
+describe("Attacking King", function () {
   beforeEach(async () => {
     [hacker, deployer, kingPlayer] = await ethers.getSigners();
     const Victim = await ethers.getContractFactory("King");
