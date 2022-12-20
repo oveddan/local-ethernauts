@@ -1,12 +1,11 @@
-import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
 import { assert, expect } from "chai";
 import { ethers } from "hardhat";
 import { AttackingDenial, Denial } from "../../typechain-types";
 
 let victim: Denial;
 let attacker: AttackingDenial;
-let deployer: SignerWithAddress;
-let hacker: SignerWithAddress;
+let deployer: any;
+let hacker;
 
 describe("Attacking Denial", function () {
   beforeEach(async () => {
@@ -24,10 +23,9 @@ describe("Attacking Denial", function () {
   it("Succesfully stop the owner from withdrawing", async () => {
     const provider = ethers.provider;
     let error;
-    let beforeBalance = await provider.getBalance(victim.address);
     try {
       await provider.getBalance(deployer.address);
-      await victim.withdraw({gasLimit: 1000000});
+      await victim.withdraw();
     } catch (err) {
       error = err.message;
     } finally {
@@ -35,8 +33,6 @@ describe("Attacking Denial", function () {
         assert.fail("Deployer got their funds!");
       }
       expect(error).to.include("Transaction ran out of gas");
-    
-      expect(beforeBalance).to.eql(await provider.getBalance(victim.address))
     }
   });
 });
